@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BancoLeiteModel {
 
+    private int id;          // agora é int
     private String nome;
     private String endereco;
     private String telefone;
