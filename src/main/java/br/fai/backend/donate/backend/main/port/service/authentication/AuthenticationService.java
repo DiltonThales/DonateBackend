@@ -1,7 +1,7 @@
 package br.fai.backend.donate.backend.main.port.service.authentication;
 
-import br.fai.backend.donate.backend.main.domain.UserModel;
+import br.fai.backend.donate.backend.main.domain.UsuarioModel;
 
 public interface AuthenticationService {
-    UserModel authentication(final String email, final String password);
+    UsuarioModel authentication(final String email, final String password);
 }

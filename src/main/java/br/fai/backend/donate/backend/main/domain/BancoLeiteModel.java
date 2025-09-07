@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserModel {
-    private  int id;
-    private String email;
-    private String password;
-    private String fullName;
+public class BancoLeiteModel {
 
-    //DTO = data transfer object
+    private String nome;
+    private String endereco;
+    private String telefone;
+    private Double latitude;
+    private Double longitude;
 }

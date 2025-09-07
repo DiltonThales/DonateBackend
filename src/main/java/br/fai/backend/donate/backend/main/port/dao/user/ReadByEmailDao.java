@@ -1,8 +1,8 @@
 package br.fai.backend.donate.backend.main.port.dao.user;
 
-import br.fai.backend.donate.backend.main.domain.UserModel;
+import br.fai.backend.donate.backend.main.domain.UsuarioModel;
 
 public interface ReadByEmailDao {
-    UserModel readByEmail(final String email);
+    UsuarioModel readByEmail(final String email);
 }
 

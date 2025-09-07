@@ -1,7 +1,7 @@
 package br.fai.backend.donate.backend.main.port.service.user;
 
-import br.fai.backend.donate.backend.main.domain.UserModel;
+import br.fai.backend.donate.backend.main.domain.UsuarioModel;
 
 public interface ReadByEmailService {
-    UserModel findByEmail(final String email);
+    UsuarioModel findByEmail(final String email);
 }
