@@ -1,12 +1,10 @@
 package br.fai.backend.donate.backend.main.security;
 
-import br.fai.backend.donate.backend.main.domain.UsuarioModel;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import io.jsonwebtoken.ExpiredJwtException;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -34,8 +31,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        final String requestTokenHeader = request.getHeader("Authorization");
+        String path = request.getServletPath();
+        if (path.startsWith("/auth") || path.equals("/usuarios/cadastro") || path.startsWith("/h2-console")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
+        final String requestTokenHeader = request.getHeader("Authorization");
         String email = null;
         String jwtToken = null;
 
@@ -59,7 +61,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken authenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 System.out.println("Usuário autenticado: " + email);
             }

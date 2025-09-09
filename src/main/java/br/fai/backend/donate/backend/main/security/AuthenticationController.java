@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@Profile("sec")
+//@Profile("sec")
 @RestController
 public class AuthenticationController {
 
@@ -29,8 +29,8 @@ public class AuthenticationController {
         this.userDetailsService = userDetailsService;
     }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<JwtTokenDto> authenticate(@RequestBody AuthenticationRequest request) {
+    @PostMapping("/auth")
+    public ResponseEntity<JwtTokenDto> authentication(@RequestBody AuthenticationRequest request) {
 
         String email = request.getEmail();
         String senha = request.getSenha();
